@@ -1,10 +1,10 @@
 package io.spring.microservice.persistence.services;
 
-import io.spring.microservice.api.CustomerController;
 import io.spring.microservice.models.CustomerDto;
 import io.spring.microservice.persistence.entities.Customer;
 import io.spring.microservice.persistence.repositories.CustomerRepository;
 import io.spring.microservice.persistence.transformer.CustomerTransformer;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
 
     @Autowired
     public CustomerService(CustomerRepository customerRepository) {
@@ -52,8 +53,9 @@ public class CustomerService {
         if (customers.isEmpty()) {
             throw new IllegalArgumentException("No Customer found for ID " + name);
         }
+        LOG.info("Found {} customers with name {}", customers.size(), name);
         for (Customer customer : customers) {
-            LoggerFactory.getLogger(CustomerController.class).info("Deleting customer {} {}", customer.getFirstName(), customer.getLastName());
+            LOG.info("Deleting customer {} {}", customer.getFirstName(), customer.getLastName());
             deleteCustomer(customer.getId());
         }
     }

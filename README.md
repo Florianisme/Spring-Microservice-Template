@@ -7,7 +7,8 @@
 * Metrics
   * Prometheus
     * Custom Metrics
+* Logging
   * Logging Format
-    * Passing transaction IDs
+  * Passing transaction IDs
 * Documentation
   * Swagger annotations?
