@@ -1,0 +1,9 @@
+plugins {
+	id "org.springframework.boot" version "2.6.8"
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+
+	implementation project(':modules:core')
+}
