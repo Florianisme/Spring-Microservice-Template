@@ -7,10 +7,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class ApplicationTests {
+class SpringMicroserviceTemplateApplicationTest {
 
-  @Test
-  void applicationContextLoads() {
-  }
+    @Test
+    void applicationContextLoads() {
+    }
 
 }

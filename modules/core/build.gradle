@@ -9,6 +9,4 @@ dependencies {
 
     // Database driver for testing
     implementation 'com.h2database:h2:2.1.212'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

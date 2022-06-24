@@ -4,6 +4,7 @@ import io.spring.microservice.models.CustomerDto;
 import io.spring.microservice.persistence.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,12 +21,12 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CustomerDto> getAllCustomers() {
         return customerService.findAll();
     }
 
-    @PutMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void insertCustomer(@Valid @RequestBody CustomerDto customer) {
         customerService.insert(customer);
