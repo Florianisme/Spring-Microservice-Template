@@ -1,4 +1,4 @@
 rootProject.name = 'Spring Microservice Template'
 
 include 'application'
-include ':modules:core'
+include 'modules:core'

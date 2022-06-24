@@ -1,11 +1,17 @@
+buildscript {
+	ext {
+		springBootVersion = "2.7.1"
+		springDependencyBomVersion = "1.0.11.RELEASE"
+	}
+}
+
 plugins {
-	id "io.spring.dependency-management" version "1.0.8.RELEASE"
+	id "io.spring.dependency-management" version "${springDependencyBomVersion}"
 }
 
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'io.spring.dependency-management'
-	apply plugin: 'java-library'
 
 	group = 'io.spring.microservice-template'
 	version = '1.0.0'
@@ -16,13 +22,13 @@ subprojects {
 
 	dependencyManagement {
 		imports {
-			mavenBom("org.springframework.boot:spring-boot-dependencies:2.6.8")
+			mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
 		}
 	}
 
 	compileJava {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
+		sourceCompatibility = JavaVersion.VERSION_11
+		targetCompatibility = JavaVersion.VERSION_11
 	}
 
 	tasks.withType(Test) {
