@@ -1,12 +1,14 @@
 package io.spring.microservice.persistence.services;
 
+import io.spring.microservice.entities.Customer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import io.spring.microservice.models.CustomerDto;
-import io.spring.microservice.persistence.entities.Customer;
 import io.spring.microservice.persistence.repositories.CustomerRepository;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 class CustomerServiceTest {
