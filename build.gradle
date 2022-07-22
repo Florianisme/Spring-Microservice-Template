@@ -12,6 +12,7 @@ plugins {
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'jacoco'
 
 	group = 'io.spring.microservice-template'
 	version = '1.0.0'
@@ -34,6 +35,12 @@ subprojects {
 	dependencies {
 		testImplementation('org.springframework.boot:spring-boot-starter-test') {
 			exclude group: 'junit' // excluding junit 4
+		}
+	}
+
+	jacocoTestReport {
+		reports {
+			xml.enabled(true)
 		}
 	}
 
