@@ -32,13 +32,13 @@ public class CustomerController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CustomerDto> getAllCustomers() {
-        return customerService.findAll();
+        return customerService.getAllCustomers();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void insertCustomer(@Valid @RequestBody CustomerDto customer) {
-        customerService.insert(customer);
+        customerService.saveCustomer(customer);
     }
 
     @DeleteMapping

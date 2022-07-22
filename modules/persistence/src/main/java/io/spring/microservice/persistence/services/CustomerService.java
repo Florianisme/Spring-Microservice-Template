@@ -28,14 +28,14 @@ public class CustomerService {
     }
 
     @Transactional(readOnly = true)
-    public List<CustomerDto> findAll() {
+    public List<CustomerDto> getAllCustomers() {
         return customerRepository.findAll()
                 .stream()
                 .map(new CustomerTransformer()::toDto).collect(Collectors.toList());
     }
 
     @Transactional
-    public void insert(CustomerDto customer) {
+    public void saveCustomer(CustomerDto customer) {
         customerRepository.save(new CustomerTransformer().toEntity(customer));
     }
 

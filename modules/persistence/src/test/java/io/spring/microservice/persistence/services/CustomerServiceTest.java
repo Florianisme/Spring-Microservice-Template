@@ -24,7 +24,7 @@ class CustomerServiceTest {
         Customer customer = new Customer("Customer", "One");
         customerRepository.save(customer);
 
-        CustomerDto result = customerService.findAll().get(0);
+        CustomerDto result = customerService.getAllCustomers().get(0);
         assertEquals("Customer", result.getFirstName());
     }
 

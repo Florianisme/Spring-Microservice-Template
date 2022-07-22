@@ -37,7 +37,7 @@ class CustomerControllerTest {
 
     @Test
     public void testGetAllCustomers_withEmptyDataset() throws Exception {
-        when(customerService.findAll()).thenReturn(Collections.emptyList());
+        when(customerService.getAllCustomers()).thenReturn(Collections.emptyList());
 
         mockMvc.perform(get("/api/v1/customers"))
                 .andExpect(status().isOk())
