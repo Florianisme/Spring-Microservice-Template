@@ -12,6 +12,6 @@ public class CustomerTransformer implements Transformer<Customer, CustomerDto> {
 
     @Override
     public Customer toEntity(CustomerDto dto) {
-        return new Customer(dto.getFirstName(), dto.getLastName());
+        return new Customer(dto.firstName(), dto.lastName());
     }
 }
