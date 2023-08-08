@@ -11,7 +11,7 @@ import io.spring.microservice.persistence.repositories.CustomerRepository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
-class CustomerServiceTest {
+class CustomerServiceIntegrationTest {
 
     @Autowired
     private CustomerService customerService;

@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		springBootVersion = "2.7.1"
-		springDependencyBomVersion = "1.0.11.RELEASE"
+		springBootVersion = "3.1.2"
+		springDependencyBomVersion = "1.0.12.RELEASE"
 	}
 }
 
@@ -28,19 +28,19 @@ subprojects {
 	}
 
 	compileJava {
-		sourceCompatibility = JavaVersion.VERSION_11
-		targetCompatibility = JavaVersion.VERSION_11
+		sourceCompatibility = JavaVersion.VERSION_17
+		targetCompatibility = JavaVersion.VERSION_17
 	}
 
 	dependencies {
 		testImplementation('org.springframework.boot:spring-boot-starter-test') {
-			exclude group: 'junit' // excluding junit 4
+			exclude group: 'junit'
 		}
 	}
 
 	jacocoTestReport {
 		reports {
-			xml.enabled(true)
+			xml.required = true
 		}
 	}
 
