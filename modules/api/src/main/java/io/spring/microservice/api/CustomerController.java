@@ -1,8 +1,8 @@
 package io.spring.microservice.api;
 
+import io.spring.microservice.api.configuration.ApiTags;
 import io.spring.microservice.models.CustomerDto;
-import io.spring.microservice.persistence.services.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -13,36 +13,24 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/api/v1/customers")
-public class CustomerController {
+public interface CustomerController {
 
-    private final CustomerService customerService;
-
-    @Autowired
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
-    }
-
+    @Operation(summary = "Retrieve all customers", tags = ApiTags.CUSTOMER)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CustomerDto> getAllCustomers() {
-        return customerService.getAllCustomers();
-    }
+    @ResponseBody
+    List<CustomerDto> getAllCustomers();
 
+    @Operation(summary = "Store a new customer", tags = ApiTags.CUSTOMER)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void insertCustomer(@Validated @RequestBody CustomerDto customer) {
-        customerService.saveCustomer(customer);
-    }
+    void insertCustomer(@Validated @RequestBody CustomerDto customer);
 
-    @DeleteMapping
-    @RequestMapping(path = "/deleteById/{id}")
-    public void deleteCustomerById(@PathVariable Long id) {
-        customerService.deleteCustomer(id);
-    }
+    @Operation(summary = "Remove a customer by their ID", tags = ApiTags.CUSTOMER)
+    @DeleteMapping(path = "/deleteById/{id}")
+    void deleteCustomerById(@PathVariable Long id);
 
-    @DeleteMapping
-    @RequestMapping(path = "/deleteByLastName/{name}")
-    public void deleteCustomerByLastName(@PathVariable(name = "name") String lastName) {
-        customerService.deleteCustomerByLastName(lastName);
-    }
+    @Operation(summary = "Remove a customer by their last name", tags = ApiTags.CUSTOMER)
+    @DeleteMapping(path = "/deleteByLastName/{name}")
+    void deleteCustomerByLastName(@PathVariable(name = "name") String lastName);
 
 }

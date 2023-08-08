@@ -1,9 +1,10 @@
 package io.spring.microservice.persistence.services;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import io.spring.microservice.entities.Customer;
+import io.spring.microservice.models.CustomerDto;
+import io.spring.microservice.persistence.repositories.CustomerRepository;
+import io.spring.microservice.transformer.CustomerTransformer;
 import jakarta.persistence.EntityNotFoundException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import io.spring.microservice.entities.Customer;
-import io.spring.microservice.models.CustomerDto;
-import io.spring.microservice.persistence.repositories.CustomerRepository;
-import io.spring.microservice.transformer.CustomerTransformer;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -49,22 +48,13 @@ public class CustomerService {
     }
 
     @Transactional
-    public void deleteCustomerByLastName(String name) {
-        List<Customer> customers = customerRepository.findByLastName(name);
+    public void deleteCustomerByLastName(String lastName) {
+        List<Customer> customers = customerRepository.findByLastName(lastName);
         if (customers.isEmpty()) {
-            throw new IllegalArgumentException("No Customer found for ID " + name);
+            throw new EntityNotFoundException("No Customer found for name " + lastName);
         }
-        LOG.info("Found {} customers with name {}", customers.size(), name);
-        for (Customer customer : customers) {
-            LOG.info("Deleting customer {} {}", customer.getFirstName(), customer.getLastName());
-            deleteCustomer(customer.getId());
-        }
-    }
 
-    @Transactional(readOnly = true)
-    public List<CustomerDto> findByLastName(String lastName) {
-        return customerRepository.findByLastName(lastName)
-                .stream()
-                .map(new CustomerTransformer()::toDto).collect(Collectors.toList());
+        LOG.info("Deleting {} customers with name {}", customers.size(), lastName);
+        customerRepository.deleteByLastName(lastName);
     }
 }

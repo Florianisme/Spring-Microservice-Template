@@ -9,6 +9,5 @@
     * Custom Metrics
 * Logging
   * Logging Format
-  * Passing transaction IDs
 * Documentation
-  * Swagger annotations?
+  * ~~Swagger annotations~~
