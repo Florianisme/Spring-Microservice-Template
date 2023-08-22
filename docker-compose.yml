@@ -1,0 +1,36 @@
+services:
+  spring-template:
+    build:
+      context: .
+    environment:
+      JAVA_OPTS: "-Dspring.datasource.url=jdbc:mysql://mysql:3306/spring_template 
+      -Dspring.datasource.username=root
+      -Dspring.datasource.password=root"
+    ports:
+      - 8080
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - spring-template-dev
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: 'spring_template'
+      MYSQL_ROOT_PASSWORD: 'root'
+    healthcheck:
+      test: mysql --user=root --password=$$MYSQL_ROOT_PASSWORD -e 'SHOW DATABASES;'
+      start_period: 5s
+      interval: 5s
+      retries: 3
+    volumes:
+      - spring-template-mysql:/var/lib/mysql
+    networks:
+      - spring-template-dev
+
+volumes:
+  spring-template-mysql:
+
+networks:
+  spring-template-dev:

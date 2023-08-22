@@ -8,3 +8,7 @@ dependencies {
 	implementation project(':modules:api')
 	implementation project(':modules:persistence')
 }
+
+jar {
+	enabled = false
+}

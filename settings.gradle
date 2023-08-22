@@ -7,5 +7,3 @@ include 'modules:api'
 include 'modules:transformer'
 include 'modules:models'
 include 'modules:entities'
-
-include 'integration-tests'

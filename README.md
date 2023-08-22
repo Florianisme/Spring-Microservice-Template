@@ -2,7 +2,7 @@
 
 ### TODO
 * Write this README
-* Dockerfile
+* ~~Dockerfile~~
   * ~~Health-check endpoint~~
 * Metrics
   * Prometheus
