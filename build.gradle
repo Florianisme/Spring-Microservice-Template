@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		springBootVersion = "3.1.2"
-		springDependencyBomVersion = "1.0.12.RELEASE"
+		springBootVersion = "3.2.1"
+		springDependencyBomVersion = "1.1.4"
 	}
 }
 
@@ -28,8 +28,8 @@ subprojects {
 	}
 
 	compileJava {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
+		sourceCompatibility = JavaVersion.VERSION_21
+		targetCompatibility = JavaVersion.VERSION_21
 	}
 
 	dependencies {
@@ -44,7 +44,7 @@ subprojects {
 		}
 	}
 
-	tasks.withType(Test) {
+	tasks.named('test') {
 		useJUnitPlatform()
 	}
 }

@@ -1,4 +1,4 @@
-FROM ibm-semeru-runtimes:open-17-jre
+FROM eclipse-temurin:21-jre
 
 MAINTAINER <MAINTAINER>
 

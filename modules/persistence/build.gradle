@@ -10,6 +10,5 @@ dependencies {
     implementation 'org.liquibase:liquibase-core:4.10.0'
 
     // Database driver for testing
-    implementation 'com.h2database:h2:2.1.212'
-    implementation 'com.mysql:mysql-connector-j:8.1.0'
+    implementation 'com.mysql:mysql-connector-j:8.2.0'
 }
